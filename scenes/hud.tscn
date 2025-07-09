@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://cqqwcr161yyvt"]
+
+[ext_resource type="Texture2D" uid="uid://mspyjf6muvlt" path="res://assets/images/sprites/buttons/up.png" id="1_6fi6k"]
+[ext_resource type="Script" uid="uid://bsb7susv1uwsd" path="res://scenes/hud.gd" id="1_uo2fv"]
+[ext_resource type="Texture2D" uid="uid://bm4732uxk0i7n" path="res://assets/images/sprites/buttons/left.png" id="2_uo2fv"]
+[ext_resource type="Texture2D" uid="uid://slv48nusqtc4" path="res://assets/images/sprites/buttons/right.png" id="3_047uy"]
+[ext_resource type="Texture2D" uid="uid://bp1m65bunvf1o" path="res://assets/images/sprites/buttons/up_pressed.png" id="3_hd3ao"]
+[ext_resource type="Texture2D" uid="uid://qrgmuv2qpc32" path="res://assets/images/sprites/buttons/down.png" id="4_5pdws"]
+[ext_resource type="Texture2D" uid="uid://8rquib7n10u7" path="res://assets/images/sprites/buttons/right_pressed.png" id="6_0i1j5"]
+[ext_resource type="Texture2D" uid="uid://ufskqkumgeyr" path="res://assets/images/sprites/buttons/down_pressed.png" id="8_mphia"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uo2fv"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_047uy"]
+size = Vector2(16, 16)
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_uo2fv")
+
+[node name="container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -82.0
+offset_right = 82.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="DPad" type="Control" parent="container"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_bottom = 72.0
+grow_horizontal = 0
+
+[node name="up" type="TouchScreenButton" parent="container/DPad"]
+position = Vector2(24, 0)
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("1_6fi6k")
+texture_pressed = ExtResource("3_hd3ao")
+shape = SubResource("RectangleShape2D_uo2fv")
+passby_press = true
+action = "ui_up"
+
+[node name="left" type="TouchScreenButton" parent="container/DPad"]
+position = Vector2(0, 24)
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("2_uo2fv")
+texture_pressed = ExtResource("2_uo2fv")
+shape = SubResource("RectangleShape2D_047uy")
+passby_press = true
+action = "ui_left"
+
+[node name="right" type="TouchScreenButton" parent="container/DPad"]
+position = Vector2(48, 24)
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("3_047uy")
+texture_pressed = ExtResource("6_0i1j5")
+shape = SubResource("RectangleShape2D_047uy")
+passby_press = true
+action = "ui_right"
+
+[node name="down" type="TouchScreenButton" parent="container/DPad"]
+position = Vector2(24, 48)
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("4_5pdws")
+texture_pressed = ExtResource("8_mphia")
+shape = SubResource("RectangleShape2D_047uy")
+passby_press = true
+action = "ui_down"
