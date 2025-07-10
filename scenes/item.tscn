@@ -1,12 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3osvi8d83tro"]
+[gd_scene load_steps=7 format=3 uid="uid://c3osvi8d83tro"]
 
 [ext_resource type="Script" uid="uid://bf4hbo7sj5v43" path="res://item.gd" id="1_4gq7n"]
+[ext_resource type="Texture2D" uid="uid://cbret0t14tmc0" path="res://assets/images/sprites/interactable/items/spawn_sprite_sheet.png" id="2_s8enn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s8enn"]
 radius = 7.0
 
-[node name="Item" type="Area2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8enn"]
+atlas = ExtResource("2_s8enn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6muww"]
+atlas = ExtResource("2_s8enn")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vljjh"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_s8enn")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_6muww")
+}],
+"loop": true,
+"name": &"spawn_light",
+"speed": 1.0
+}]
+
+[node name="Item" type="Area2D" node_paths=PackedStringArray("_animation")]
 script = ExtResource("1_4gq7n")
+_animation = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_s8enn")
@@ -14,6 +38,12 @@ disabled = true
 
 [node name="CollectTimer" type="Timer" parent="."]
 wait_time = 0.1
+
+[node name="Spawn_light" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_vljjh")
+animation = &"spawn_light"
+frame_progress = 0.766572
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="CollectTimer" to="." method="_on_collect_timer_timeout"]

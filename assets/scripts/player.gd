@@ -16,8 +16,8 @@ func _ready() -> void:
 	_screen_size = get_viewport().size
 
 func set_animation() -> void:
-	_animation = _animation if velocity.y == 0 else ("walk_down" if velocity.y > 0 else "walk_up")
-	_animation = _animation if velocity.x == 0 else "walk_right"
+	_animation = _animation if _direction.y == 0 else ("walk_down" if _direction.y > 0 else "walk_up")
+	_animation = _animation if _direction.x == 0 else "walk_right"
 	if velocity.length() == 0:
 		_animation = _animation.replace("walk","idle")
 	$Sprite.flip_h = _flip_h
@@ -58,6 +58,7 @@ func start_position(_position) -> void:
 
 func _on_action_area_body_entered(_body: Node2D) -> void:
 	if _body is PhysicObject:
+		print(_body)
 		_body.hit(_damage)
 
 

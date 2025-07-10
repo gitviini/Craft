@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmem03r8jndeq"]
+[gd_scene load_steps=7 format=3 uid="uid://cmem03r8jndeq"]
 
 [ext_resource type="PackedScene" uid="uid://c3osvi8d83tro" path="res://scenes/item.tscn" id="1_y25wi"]
 [ext_resource type="Texture2D" uid="uid://p4n5lbgbkrsa" path="res://assets/images/sprites/interactable/items/wood/wood_sprite_sheet.png" id="2_d45ue"]
 
-[sub_resource type="Animation" id="Animation_es2n6"]
+[sub_resource type="Animation" id="Animation_d45ue"]
 resource_name = "idle"
 loop_mode = 1
 tracks/0/type = "value"
@@ -16,12 +16,12 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [4]
+"values": [2]
 }
 
-[sub_resource type="Animation" id="Animation_n3wld"]
+[sub_resource type="Animation" id="Animation_es2n6"]
 resource_name = "spawn"
-length = 0.5
+length = 0.3
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -30,36 +30,55 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4]
+"values": [0, 1, 2]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1yd0c"]
+[sub_resource type="Animation" id="Animation_n3wld"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_es2n6"]
 _data = {
-&"idle": SubResource("Animation_es2n6"),
-&"spawn": SubResource("Animation_n3wld")
+&"RESET": SubResource("Animation_n3wld"),
+&"idle": SubResource("Animation_d45ue"),
+&"spawn": SubResource("Animation_es2n6")
 }
 
-[node name="Item" node_paths=PackedStringArray("_animation") instance=ExtResource("1_y25wi")]
+[node name="Wood" node_paths=PackedStringArray("_animation") instance=ExtResource("1_y25wi")]
 _animation = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(0, 3)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_d45ue")
+hframes = 3
+frame = 2
+
+[node name="CollectTimer" parent="." index="2"]
+wait_time = 0.3
+
+[node name="Spawn_light" parent="." index="3"]
+visible = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 libraries = {
-&"": SubResource("AnimationLibrary_1yd0c")
+&"": SubResource("AnimationLibrary_es2n6")
 }
 autoplay = "idle"
-
-[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
-texture = ExtResource("2_d45ue")
-hframes = 5
-frame = 4
-
-[node name="CollectTimer" parent="." index="3"]
-wait_time = 0.3
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_animation_finish"]

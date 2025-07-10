@@ -94,14 +94,18 @@ _hit_animation = {
 1: &"hit_trunk",
 10: &"hit_tree"
 }
+_max_drop = 3
+_min_drop = 1
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, 3)
 
 [node name="Shadow" type="Sprite2D" parent="." index="1"]
 modulate = Color(1, 1, 1, 0.501961)
-position = Vector2(0, -2)
 texture = ExtResource("2_viusy")
 
 [node name="Sprite" type="Sprite2D" parent="." index="2"]
-position = Vector2(0, -11)
+position = Vector2(0, -9)
 texture = ExtResource("3_viusy")
 hframes = 4
 vframes = 3

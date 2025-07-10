@@ -4,13 +4,17 @@ class_name PhysicObject
 @export_category("Variables")
 @export var _animation: AnimationPlayer
 @export var _droppable: Array[PackedScene]
-@export var _idle_animation: Dictionary
-@export var _hit_animation: Dictionary
-@export var _max_health:int = 30
-@export var _min_health:int = 20
+@export var _idle_animation: Dictionary = {
+	1: "idle"
+}
+@export var _hit_animation: Dictionary = {
+	1: "hit"
+}
+@export var _max_health:int
+@export var _min_health:int
 @export var _health:int = randi_range(_min_health, _max_health)
-@export var _max_drop: int = 2
-@export var _min_drop: int = 1
+@export var _max_drop: int
+@export var _min_drop: int
 
 func _get_animation(_dict_animation) -> StringName:
 	var _name:StringName

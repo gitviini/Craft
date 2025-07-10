@@ -7,6 +7,10 @@ var _can_collect = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$Spawn_light.visible = true
+	$Spawn_light.play("spawn_light")
+	await get_tree().create_timer(0.1).timeout
+	$Spawn_light.visible = false
 	_animation.play("spawn")
 	$CollectTimer.start()
 
