@@ -6,11 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://k7hue5cdjnkq" path="res://scenes/seed.tscn" id="3_ake3r"]
 [ext_resource type="Texture2D" uid="uid://1ykdjwlfoibc" path="res://assets/images/sprites/interactable/tree/tree_sprite_sheet.png" id="3_viusy"]
 
-[sub_resource type="Animation" id="Animation_vplca"]
-resource_name = "idle"
-length = 4.0
-loop_mode = 1
-step = 4.0
+[sub_resource type="Animation" id="Animation_viusy"]
+resource_name = "hit_tree"
+length = 0.2
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -18,10 +17,10 @@ tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 1, 2, 3]
+"values": [4, 5]
 }
 
 [sub_resource type="Animation" id="Animation_qd6xs"]
@@ -41,10 +40,11 @@ tracks/0/keys = {
 "values": [9, 10]
 }
 
-[sub_resource type="Animation" id="Animation_viusy"]
-resource_name = "hit_tree"
-length = 0.2
-step = 0.1
+[sub_resource type="Animation" id="Animation_vplca"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+step = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -52,10 +52,10 @@ tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [4, 5]
+"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="Animation" id="Animation_ake3r"]
@@ -95,16 +95,13 @@ _hit_animation = {
 10: &"hit_tree"
 }
 
-[node name="CollisionShape2D" parent="." index="0"]
-position = Vector2(0, 3)
-
 [node name="Shadow" type="Sprite2D" parent="." index="1"]
 modulate = Color(1, 1, 1, 0.501961)
-position = Vector2(0, 1)
+position = Vector2(0, -2)
 texture = ExtResource("2_viusy")
 
 [node name="Sprite" type="Sprite2D" parent="." index="2"]
-position = Vector2(0, -8)
+position = Vector2(0, -11)
 texture = ExtResource("3_viusy")
 hframes = 4
 vframes = 3

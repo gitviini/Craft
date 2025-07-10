@@ -16,10 +16,10 @@ func _get_animation(_dict_animation) -> StringName:
 	var _name:StringName
 	
 	for _key in _dict_animation:
-		var _min_health = _key
+		var _min_health_animation = _key
 		var _anim_name = _dict_animation.get(_key)
 		
-		if _health >= _min_health:
+		if _health >= _min_health_animation:
 			_name = _anim_name
 			
 	return _name
@@ -33,7 +33,7 @@ func hit(_damage:int) -> void:
 		_health -= _damage
 		set_process(false)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if _health <= 0:
 		for _drop_item in _droppable:
 			for _i in range(randi_range(_min_drop, _max_drop)):

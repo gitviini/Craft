@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxh6hdrgwo42l"]
+
+[ext_resource type="Texture2D" uid="uid://1ykdjwlfoibc" path="res://assets/images/sprites/interactable/tree/tree_sprite_sheet.png" id="1_1vujl"]
+[ext_resource type="Script" uid="uid://5qy3evghg00u" path="res://assets/scripts/objects_tile_map_layer.gd" id="1_n6x2m"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i8xll"]
+texture = ExtResource("1_1vujl")
+margins = Vector2i(0, 3)
+0:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_bmbqf"]
+sources/0 = SubResource("TileSetAtlasSource_i8xll")
+
+[node name="ObjectsTileMapLayer" type="TileMapLayer"]
+tile_set = SubResource("TileSet_bmbqf")
+script = ExtResource("1_n6x2m")

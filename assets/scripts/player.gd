@@ -25,10 +25,10 @@ func set_animation() -> void:
 	$ActionArea.rotation =  $ActionArea.rotation if _direction.x == 0 else deg_to_rad(90) * _direction.x * -1
 	$AnimationPlayer.play(_animation)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	set_animation()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("ui_accept") and not _run_action:
 		set_physics_process(false)
 		set_process(false)
