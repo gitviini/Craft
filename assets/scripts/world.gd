@@ -12,4 +12,4 @@ func _process(delta: float) -> void:
 
 
 func start_game() -> void:
-	$Player.start_position($StartPosition.position)
+	$Container/Player.start_position($StartPosition.position)
