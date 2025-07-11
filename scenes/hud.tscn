@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cqqwcr161yyvt"]
+[gd_scene load_steps=24 format=3 uid="uid://cqqwcr161yyvt"]
 
 [ext_resource type="Texture2D" uid="uid://mspyjf6muvlt" path="res://assets/images/sprites/buttons/up.png" id="1_6fi6k"]
 [ext_resource type="Script" uid="uid://bsb7susv1uwsd" path="res://assets/scripts/hud.gd" id="1_mphia"]
@@ -12,6 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://0ysmr2mbmv0b" path="res://assets/images/sprites/buttons/action_pressed.png" id="10_0m4u7"]
 [ext_resource type="Texture2D" uid="uid://cs4323q2wt72r" path="res://assets/images/sprites/buttons/reload.png" id="11_apjy4"]
 [ext_resource type="Texture2D" uid="uid://d2w1wrocl2m7m" path="res://assets/images/sprites/buttons/reload_pressed.png" id="12_5n1hp"]
+[ext_resource type="Texture2D" uid="uid://cisd0g65xh0l8" path="res://assets/images/sprites/buttons/menu.png" id="13_eld54"]
+[ext_resource type="Texture2D" uid="uid://bjyw1qrrt83si" path="res://assets/images/sprites/buttons/menu_pressed.png" id="14_3swnk"]
+[ext_resource type="Texture2D" uid="uid://d23rwe3xaecmc" path="res://assets/images/sprites/buttons/close.png" id="15_qkknv"]
+[ext_resource type="Texture2D" uid="uid://c3g0whyat5hag" path="res://assets/images/sprites/buttons/close_pressed.png" id="16_uxdf7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uo2fv"]
 size = Vector2(48, 16)
@@ -25,11 +29,20 @@ size = Vector2(48, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5n1hp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eld54"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qkknv"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5357l"]
+size = Vector2(16, 16)
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_mphia")
 
-[node name="ContainerDPad" type="Control" parent="."]
+[node name="Controls" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="Controls"]
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
@@ -40,7 +53,7 @@ grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 8
 
-[node name="DPad" type="Control" parent="ContainerDPad"]
+[node name="DPad" type="Control" parent="Controls/Control"]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 1
@@ -50,7 +63,7 @@ offset_left = -72.0
 offset_bottom = 72.0
 grow_horizontal = 0
 
-[node name="up" type="TouchScreenButton" parent="ContainerDPad/DPad"]
+[node name="up" type="TouchScreenButton" parent="Controls/Control/DPad"]
 position = Vector2(24, 0)
 scale = Vector2(1.5, 1.5)
 texture_normal = ExtResource("1_6fi6k")
@@ -60,7 +73,7 @@ passby_press = true
 action = "ui_up"
 visibility_mode = 1
 
-[node name="left" type="TouchScreenButton" parent="ContainerDPad/DPad"]
+[node name="left" type="TouchScreenButton" parent="Controls/Control/DPad"]
 position = Vector2(0, 24)
 scale = Vector2(1.5, 1.5)
 texture_normal = ExtResource("2_uo2fv")
@@ -70,7 +83,7 @@ passby_press = true
 action = "ui_left"
 visibility_mode = 1
 
-[node name="right" type="TouchScreenButton" parent="ContainerDPad/DPad"]
+[node name="right" type="TouchScreenButton" parent="Controls/Control/DPad"]
 position = Vector2(48, 24)
 scale = Vector2(1.5, 1.5)
 texture_normal = ExtResource("3_047uy")
@@ -80,7 +93,7 @@ passby_press = true
 action = "ui_right"
 visibility_mode = 1
 
-[node name="down" type="TouchScreenButton" parent="ContainerDPad/DPad"]
+[node name="down" type="TouchScreenButton" parent="Controls/Control/DPad"]
 position = Vector2(24, 48)
 scale = Vector2(1.5, 1.5)
 texture_normal = ExtResource("4_5pdws")
@@ -90,7 +103,7 @@ passby_press = true
 action = "ui_down"
 visibility_mode = 1
 
-[node name="ContainerActions" type="Control" parent="."]
+[node name="ContainerActions" type="Control" parent="Controls"]
 layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
@@ -102,13 +115,13 @@ offset_top = -82.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="Actions" type="Control" parent="ContainerActions"]
+[node name="Actions" type="Control" parent="Controls/ContainerActions"]
 layout_mode = 1
 anchors_preset = 0
 offset_right = 72.0
 offset_bottom = 72.0
 
-[node name="ContainerTouch" type="Control" parent="ContainerActions/Actions"]
+[node name="ContainerTouch" type="Control" parent="Controls/ContainerActions/Actions"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -121,7 +134,7 @@ offset_bottom = 12.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="action" type="TouchScreenButton" parent="ContainerActions/Actions/ContainerTouch"]
+[node name="action" type="TouchScreenButton" parent="Controls/ContainerActions/Actions/ContainerTouch"]
 scale = Vector2(1.5, 1.5)
 texture_normal = ExtResource("9_mphia")
 texture_pressed = ExtResource("10_0m4u7")
@@ -130,7 +143,7 @@ passby_press = true
 action = "ui_accept"
 visibility_mode = 1
 
-[node name="ContainerSettings" type="Control" parent="."]
+[node name="ContainerSettings" type="Control" parent="Controls"]
 layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
@@ -139,7 +152,7 @@ offset_left = -82.0
 offset_bottom = 82.0
 grow_horizontal = 0
 
-[node name="Options" type="Control" parent="ContainerSettings"]
+[node name="Options" type="Control" parent="Controls/ContainerSettings"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -148,7 +161,7 @@ offset_top = -72.0
 offset_right = 72.0
 grow_vertical = 0
 
-[node name="Reload" type="Control" parent="ContainerSettings/Options"]
+[node name="Reload" type="Control" parent="Controls/ContainerSettings/Options"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -157,7 +170,7 @@ offset_left = -24.0
 offset_bottom = 24.0
 grow_horizontal = 0
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="ContainerSettings/Options/Reload"]
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Controls/ContainerSettings/Options/Reload"]
 scale = Vector2(1.5, 1.5)
 texture_normal = ExtResource("11_apjy4")
 texture_pressed = ExtResource("12_5n1hp")
@@ -165,3 +178,59 @@ shape = SubResource("RectangleShape2D_eld54")
 passby_press = true
 action = "reload"
 visibility_mode = 1
+
+[node name="Menu" type="Control" parent="Controls/ContainerSettings/Options"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -12.0
+offset_right = 12.0
+offset_bottom = 24.0
+grow_horizontal = 2
+
+[node name="TouchScreenButton2" type="TouchScreenButton" parent="Controls/ContainerSettings/Options/Menu"]
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("13_eld54")
+texture_pressed = ExtResource("14_3swnk")
+shape = SubResource("RectangleShape2D_qkknv")
+passby_press = true
+action = "ui_cancel"
+visibility_mode = 1
+
+[node name="Menu" type="CanvasLayer" parent="."]
+
+[node name="ContainerSettings" type="Control" parent="Menu"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -82.0
+offset_bottom = 82.0
+grow_horizontal = 0
+
+[node name="Options" type="Control" parent="Menu/ContainerSettings"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -72.0
+offset_right = 72.0
+grow_vertical = 0
+
+[node name="Close" type="Control" parent="Menu/ContainerSettings/Options"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -24.0
+offset_bottom = 24.0
+grow_horizontal = 0
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Menu/ContainerSettings/Options/Close"]
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("15_qkknv")
+texture_pressed = ExtResource("16_uxdf7")
+shape = SubResource("RectangleShape2D_5357l")
+passby_press = true
+action = "ui_cancel"

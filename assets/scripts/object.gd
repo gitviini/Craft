@@ -12,7 +12,7 @@ class_name PhysicObject
 }
 @export var _max_health:int
 @export var _min_health:int
-@export var _health:int = randi_range(_min_health, _max_health)
+@export var _health:int
 @export var _max_drop: int
 @export var _min_drop: int
 
@@ -29,7 +29,7 @@ func _get_animation(_dict_animation) -> StringName:
 	return _name
 
 func _ready() -> void:
-	pass
+	_health = randi_range(_min_health, _max_health)
 
 func hit(_damage:int) -> void:
 	if _health > 0:

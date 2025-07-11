@@ -94,6 +94,7 @@ _hit_animation = {
 1: &"hit_trunk",
 10: &"hit_tree"
 }
+_health = 30
 _max_drop = 3
 _min_drop = 1
 
