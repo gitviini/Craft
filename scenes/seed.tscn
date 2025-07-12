@@ -59,13 +59,13 @@ _data = {
 &"spawn": SubResource("Animation_l184s")
 }
 
-[node name="Item" node_paths=PackedStringArray("_animation") instance=ExtResource("1_m0bgt")]
+[node name="Seed" node_paths=PackedStringArray("_animation") instance=ExtResource("1_m0bgt")]
+_name = &"seed"
 _animation = NodePath("AnimationPlayer")
-
-[node name="CollisionShape2D" parent="." index="0"]
-position = Vector2(0, 2)
+_texture = ExtResource("2_6mtvd")
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+position = Vector2(0, -6)
 texture = ExtResource("2_6mtvd")
 hframes = 3
 frame = 1

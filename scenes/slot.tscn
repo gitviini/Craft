@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://bnuyjsh7xmmc6"]
+
+[ext_resource type="Texture2D" uid="uid://p3hs5ofxr7bl" path="res://assets/images/sprites/inventory/inventory_box.png" id="1_5f2j7"]
+[ext_resource type="Texture2D" uid="uid://bymten4rwvedq" path="res://assets/images/sprites/inventory/inventory_box_pressed.png" id="2_sjnr7"]
+[ext_resource type="Script" uid="uid://ffwg8hsjk8k5" path="res://assets/scripts/slot.gd" id="3_n3jes"]
+[ext_resource type="FontFile" uid="uid://dry3kexrlpikm" path="res://assets/font/font.ttf" id="4_cs5ta"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_c4nwd"]
+device = -1
+keycode = 49
+unicode = 49
+
+[sub_resource type="Shortcut" id="Shortcut_c4fra"]
+events = [SubResource("InputEventKey_c4nwd")]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a6gqn"]
+font = ExtResource("4_cs5ta")
+font_size = 6
+font_color = Color(0.25098, 0.188235, 0.188235, 1)
+outline_color = Color(0.25098, 0.188235, 0.188235, 1)
+
+[node name="Slot" type="TextureButton" node_paths=PackedStringArray("_sprite", "_label")]
+offset_right = 24.0
+offset_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 1
+shortcut = SubResource("Shortcut_c4fra")
+texture_normal = ExtResource("1_5f2j7")
+texture_pressed = ExtResource("2_sjnr7")
+texture_focused = ExtResource("2_sjnr7")
+stretch_mode = 0
+script = ExtResource("3_n3jes")
+_sprite = NodePath("Container/Sprite2D")
+_label = NodePath("Container/Label")
+_can_drag = true
+
+[node name="Container" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 12.0
+offset_bottom = 12.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Container"]
+z_index = 99
+scale = Vector2(1.5, 1.5)
+
+[node name="Label" type="Label" parent="Container"]
+z_index = 99
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_a6gqn")
+vertical_alignment = 2
+
+[node name="DragCoolDownTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="timeout" from="DragCoolDownTimer" to="." method="_on_drag_cool_down_timer_timeout"]

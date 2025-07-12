@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cqqwcr161yyvt"]
+[gd_scene load_steps=29 format=3 uid="uid://cqqwcr161yyvt"]
 
 [ext_resource type="Texture2D" uid="uid://mspyjf6muvlt" path="res://assets/images/sprites/buttons/up.png" id="1_6fi6k"]
 [ext_resource type="Script" uid="uid://bsb7susv1uwsd" path="res://assets/scripts/hud.gd" id="1_mphia"]
@@ -14,8 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://d2w1wrocl2m7m" path="res://assets/images/sprites/buttons/reload_pressed.png" id="12_5n1hp"]
 [ext_resource type="Texture2D" uid="uid://cisd0g65xh0l8" path="res://assets/images/sprites/buttons/menu.png" id="13_eld54"]
 [ext_resource type="Texture2D" uid="uid://bjyw1qrrt83si" path="res://assets/images/sprites/buttons/menu_pressed.png" id="14_3swnk"]
-[ext_resource type="Texture2D" uid="uid://d23rwe3xaecmc" path="res://assets/images/sprites/buttons/close.png" id="15_qkknv"]
-[ext_resource type="Texture2D" uid="uid://c3g0whyat5hag" path="res://assets/images/sprites/buttons/close_pressed.png" id="16_uxdf7"]
+[ext_resource type="Texture2D" uid="uid://c8qipfmojffuq" path="res://assets/images/sprites/buttons/close.png" id="15_qkknv"]
+[ext_resource type="Texture2D" uid="uid://m60wqv5u2n3c" path="res://assets/images/sprites/buttons/close_pressed.png" id="16_uxdf7"]
+[ext_resource type="PackedScene" uid="uid://c78tsiet61bh8" path="res://scenes/tool_bar.tscn" id="17_uxdf7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uo2fv"]
 size = Vector2(48, 16)
@@ -31,11 +32,29 @@ size = Vector2(48, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eld54"]
 size = Vector2(16, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qkknv"]
-size = Vector2(16, 16)
+[sub_resource type="InputEventKey" id="InputEventKey_uxdf7"]
+device = -1
+keycode = 69
+unicode = 101
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5357l"]
-size = Vector2(16, 16)
+[sub_resource type="InputEventKey" id="InputEventKey_5357l"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_5357l"]
+events = [SubResource("InputEventKey_uxdf7"), SubResource("InputEventKey_5357l")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_qkknv"]
+device = -1
+keycode = 69
+unicode = 101
+
+[sub_resource type="InputEventKey" id="InputEventKey_iypfu"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_uxdf7"]
+events = [SubResource("InputEventKey_qkknv"), SubResource("InputEventKey_iypfu")]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_mphia")
@@ -163,12 +182,13 @@ grow_vertical = 0
 
 [node name="Reload" type="Control" parent="Controls/ContainerSettings/Options"]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -24.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -12.0
+offset_right = 12.0
 offset_bottom = 24.0
-grow_horizontal = 0
+grow_horizontal = 2
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="Controls/ContainerSettings/Options/Reload"]
 scale = Vector2(1.5, 1.5)
@@ -181,24 +201,25 @@ visibility_mode = 1
 
 [node name="Menu" type="Control" parent="Controls/ContainerSettings/Options"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -12.0
-offset_right = 12.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -24.0
 offset_bottom = 24.0
-grow_horizontal = 2
+grow_horizontal = 0
 
-[node name="TouchScreenButton2" type="TouchScreenButton" parent="Controls/ContainerSettings/Options/Menu"]
-scale = Vector2(1.5, 1.5)
+[node name="TextureButton" type="TextureButton" parent="Controls/ContainerSettings/Options/Menu"]
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 24.0
+action_mode = 0
+shortcut = SubResource("Shortcut_5357l")
 texture_normal = ExtResource("13_eld54")
 texture_pressed = ExtResource("14_3swnk")
-shape = SubResource("RectangleShape2D_qkknv")
-passby_press = true
-action = "ui_cancel"
-visibility_mode = 1
+stretch_mode = 0
 
 [node name="Menu" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ContainerSettings" type="Control" parent="Menu"]
 layout_mode = 3
@@ -227,10 +248,18 @@ offset_left = -24.0
 offset_bottom = 24.0
 grow_horizontal = 0
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="Menu/ContainerSettings/Options/Close"]
-scale = Vector2(1.5, 1.5)
+[node name="TextureButton" type="TextureButton" parent="Menu/ContainerSettings/Options/Close"]
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 24.0
+action_mode = 0
+shortcut = SubResource("Shortcut_uxdf7")
+shortcut_in_tooltip = false
 texture_normal = ExtResource("15_qkknv")
 texture_pressed = ExtResource("16_uxdf7")
-shape = SubResource("RectangleShape2D_5357l")
-passby_press = true
-action = "ui_cancel"
+stretch_mode = 0
+
+[node name="ToolBar" parent="." instance=ExtResource("17_uxdf7")]
+
+[connection signal="pressed" from="Controls/ContainerSettings/Options/Menu/TextureButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="Menu/ContainerSettings/Options/Close/TextureButton" to="." method="_on_close_button_pressed"]

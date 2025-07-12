@@ -3,6 +3,21 @@
 [ext_resource type="PackedScene" uid="uid://c3osvi8d83tro" path="res://scenes/item.tscn" id="1_y25wi"]
 [ext_resource type="Texture2D" uid="uid://p4n5lbgbkrsa" path="res://assets/images/sprites/interactable/items/wood/wood_sprite_sheet.png" id="2_d45ue"]
 
+[sub_resource type="Animation" id="Animation_n3wld"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
 [sub_resource type="Animation" id="Animation_d45ue"]
 resource_name = "idle"
 loop_mode = 1
@@ -36,21 +51,6 @@ tracks/0/keys = {
 "values": [0, 1, 2]
 }
 
-[sub_resource type="Animation" id="Animation_n3wld"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_es2n6"]
 _data = {
 &"RESET": SubResource("Animation_n3wld"),
@@ -59,12 +59,12 @@ _data = {
 }
 
 [node name="Wood" node_paths=PackedStringArray("_animation") instance=ExtResource("1_y25wi")]
+_name = &"wood"
 _animation = NodePath("AnimationPlayer")
-
-[node name="CollisionShape2D" parent="." index="0"]
-position = Vector2(0, 3)
+_texture = ExtResource("2_d45ue")
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+position = Vector2(0, -6)
 texture = ExtResource("2_d45ue")
 hframes = 3
 frame = 2
@@ -74,11 +74,15 @@ wait_time = 0.3
 
 [node name="Spawn_light" parent="." index="3"]
 visible = true
+position = Vector2(0, -6)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 libraries = {
 &"": SubResource("AnimationLibrary_es2n6")
 }
 autoplay = "idle"
+
+[node name="PushCollision" parent="PushArea" index="0"]
+position = Vector2(0, -2)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_animation_finish"]

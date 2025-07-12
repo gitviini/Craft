@@ -1,10 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3osvi8d83tro"]
+[gd_scene load_steps=8 format=3 uid="uid://c3osvi8d83tro"]
 
 [ext_resource type="Script" uid="uid://bf4hbo7sj5v43" path="res://item.gd" id="1_4gq7n"]
 [ext_resource type="Texture2D" uid="uid://cbret0t14tmc0" path="res://assets/images/sprites/interactable/items/spawn_sprite_sheet.png" id="2_s8enn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s8enn"]
-radius = 7.0
+radius = 3.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s8enn"]
 atlas = ExtResource("2_s8enn")
@@ -28,11 +28,13 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="Item" type="Area2D" node_paths=PackedStringArray("_animation")]
-script = ExtResource("1_4gq7n")
-_animation = NodePath("")
+[sub_resource type="CircleShape2D" id="CircleShape2D_6muww"]
+radius = 16.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Item" type="Area2D"]
+script = ExtResource("1_4gq7n")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_s8enn")
 disabled = true
 
@@ -45,5 +47,13 @@ sprite_frames = SubResource("SpriteFrames_vljjh")
 animation = &"spawn_light"
 frame_progress = 0.766572
 
+[node name="PushArea" type="Area2D" parent="."]
+
+[node name="PushCollision" type="CollisionShape2D" parent="PushArea"]
+shape = SubResource("CircleShape2D_6muww")
+disabled = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="CollectTimer" to="." method="_on_collect_timer_timeout"]
+[connection signal="body_entered" from="PushArea" to="." method="_on_push_area_body_entered"]
+[connection signal="body_exited" from="PushArea" to="." method="_on_push_area_body_exited"]

@@ -1,7 +1,8 @@
 extends CharacterBody2D
-class_name CharacterBody
+class_name Person
 
 @export_category("Variables")
+@export var _inventory := preload("res://scenes/inventory.tres")
 @export var SPEED:int = 50
 @export var _direction:Vector2 = Vector2.ZERO
 @export var _flip_h:bool = false
@@ -58,7 +59,6 @@ func start_position(_position) -> void:
 
 func _on_action_area_body_entered(_body: Node2D) -> void:
 	if _body is PhysicObject:
-		print(_body)
 		_body.hit(_damage)
 
 
