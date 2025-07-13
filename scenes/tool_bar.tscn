@@ -2,11 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bh0kofshrh55f" path="res://assets/scripts/tool_bar.gd" id="1_m2m64"]
 
-[node name="ToolBar" type="CanvasLayer" node_paths=PackedStringArray("_container")]
-script = ExtResource("1_m2m64")
-_container = NodePath("Grid")
-
-[node name="Grid" type="GridContainer" parent="."]
+[node name="ToolBar" type="GridContainer"]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -17,3 +13,4 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 24
+script = ExtResource("1_m2m64")

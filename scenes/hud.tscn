@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cqqwcr161yyvt"]
+[gd_scene load_steps=30 format=3 uid="uid://cqqwcr161yyvt"]
 
 [ext_resource type="Texture2D" uid="uid://mspyjf6muvlt" path="res://assets/images/sprites/buttons/up.png" id="1_6fi6k"]
 [ext_resource type="Script" uid="uid://bsb7susv1uwsd" path="res://assets/scripts/hud.gd" id="1_mphia"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bjyw1qrrt83si" path="res://assets/images/sprites/buttons/menu_pressed.png" id="14_3swnk"]
 [ext_resource type="Texture2D" uid="uid://c8qipfmojffuq" path="res://assets/images/sprites/buttons/close.png" id="15_qkknv"]
 [ext_resource type="Texture2D" uid="uid://m60wqv5u2n3c" path="res://assets/images/sprites/buttons/close_pressed.png" id="16_uxdf7"]
+[ext_resource type="PackedScene" uid="uid://dmruh3bkrvo5r" path="res://scenes/inventory_grid.tscn" id="17_5357l"]
 [ext_resource type="PackedScene" uid="uid://d2ofelegykfr1" path="res://scenes/tool_bar.tscn" id="17_uxdf7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uo2fv"]
@@ -133,6 +134,7 @@ offset_left = -82.0
 offset_top = -82.0
 grow_horizontal = 0
 grow_vertical = 0
+size_flags_horizontal = 4
 
 [node name="Actions" type="Control" parent="Controls/ContainerActions"]
 layout_mode = 1
@@ -170,6 +172,7 @@ anchor_right = 1.0
 offset_left = -82.0
 offset_bottom = 82.0
 grow_horizontal = 0
+size_flags_horizontal = 4
 
 [node name="Options" type="Control" parent="Controls/ContainerSettings"]
 layout_mode = 1
@@ -212,6 +215,7 @@ grow_horizontal = 0
 layout_mode = 0
 offset_right = 24.0
 offset_bottom = 24.0
+mouse_default_cursor_shape = 2
 action_mode = 0
 shortcut = SubResource("Shortcut_5357l")
 texture_normal = ExtResource("13_eld54")
@@ -252,6 +256,7 @@ grow_horizontal = 0
 layout_mode = 0
 offset_right = 24.0
 offset_bottom = 24.0
+mouse_default_cursor_shape = 2
 action_mode = 0
 shortcut = SubResource("Shortcut_uxdf7")
 shortcut_in_tooltip = false
@@ -260,6 +265,9 @@ texture_pressed = ExtResource("16_uxdf7")
 stretch_mode = 0
 
 [node name="ToolBar" parent="." instance=ExtResource("17_uxdf7")]
+
+[node name="InventoryGrid" parent="." instance=ExtResource("17_5357l")]
+visible = false
 
 [connection signal="pressed" from="Controls/ContainerSettings/Options/Menu/TextureButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Menu/ContainerSettings/Options/Close/TextureButton" to="." method="_on_close_button_pressed"]

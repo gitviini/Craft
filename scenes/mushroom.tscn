@@ -80,7 +80,7 @@ color = Color(0.0666667, 0.133333, 0.2, 0.501961)
 metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(0, 3.5)
+position = Vector2(0, 3)
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="2"]
 position = Vector2(0, -1)

@@ -64,14 +64,18 @@ _name = &"seed"
 _animation = NodePath("AnimationPlayer")
 _texture = ExtResource("2_6mtvd")
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
-position = Vector2(0, -6)
-texture = ExtResource("2_6mtvd")
-hframes = 3
-frame = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 libraries = {
 &"": SubResource("AnimationLibrary_syr4b")
 }
 autoplay = "idle"
+
+[node name="ColorRect" parent="." index="4"]
+offset_top = 1.0
+offset_bottom = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="5"]
+position = Vector2(0, -6)
+texture = ExtResource("2_6mtvd")
+hframes = 3
+frame = 1

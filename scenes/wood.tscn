@@ -82,7 +82,10 @@ libraries = {
 }
 autoplay = "idle"
 
-[node name="PushCollision" parent="PushArea" index="0"]
-position = Vector2(0, -2)
+[node name="ColorRect" parent="." index="5"]
+offset_left = -5.0
+offset_top = 2.0
+offset_right = 5.0
+offset_bottom = 3.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_animation_finish"]
