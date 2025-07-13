@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bjyw1qrrt83si" path="res://assets/images/sprites/buttons/menu_pressed.png" id="14_3swnk"]
 [ext_resource type="Texture2D" uid="uid://c8qipfmojffuq" path="res://assets/images/sprites/buttons/close.png" id="15_qkknv"]
 [ext_resource type="Texture2D" uid="uid://m60wqv5u2n3c" path="res://assets/images/sprites/buttons/close_pressed.png" id="16_uxdf7"]
-[ext_resource type="PackedScene" uid="uid://c78tsiet61bh8" path="res://scenes/tool_bar.tscn" id="17_uxdf7"]
+[ext_resource type="PackedScene" uid="uid://d2ofelegykfr1" path="res://scenes/tool_bar.tscn" id="17_uxdf7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uo2fv"]
 size = Vector2(48, 16)

@@ -1,73 +1,67 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnuyjsh7xmmc6"]
+[gd_scene load_steps=7 format=3 uid="uid://djn1wcnn7mt8d"]
 
 [ext_resource type="Texture2D" uid="uid://p3hs5ofxr7bl" path="res://assets/images/sprites/inventory/inventory_box.png" id="1_5f2j7"]
 [ext_resource type="Texture2D" uid="uid://bymten4rwvedq" path="res://assets/images/sprites/inventory/inventory_box_pressed.png" id="2_sjnr7"]
-[ext_resource type="Script" uid="uid://ffwg8hsjk8k5" path="res://assets/scripts/slot.gd" id="3_n3jes"]
+[ext_resource type="Script" uid="uid://cymrbx0yqtuhg" path="res://assets/scripts/slot.gd" id="3_n3jes"]
 [ext_resource type="FontFile" uid="uid://dry3kexrlpikm" path="res://assets/font/font.ttf" id="4_cs5ta"]
+[ext_resource type="Texture2D" uid="uid://bdrncjxwv3kkn" path="res://assets/images/sprites/inventory/empty.png" id="4_sjnr7"]
 
-[sub_resource type="InputEventKey" id="InputEventKey_c4nwd"]
-device = -1
-keycode = 49
-unicode = 49
-
-[sub_resource type="Shortcut" id="Shortcut_c4fra"]
-events = [SubResource("InputEventKey_c4nwd")]
-
-[sub_resource type="LabelSettings" id="LabelSettings_a6gqn"]
+[sub_resource type="LabelSettings" id="LabelSettings_n3jes"]
 font = ExtResource("4_cs5ta")
 font_size = 6
 font_color = Color(0.25098, 0.188235, 0.188235, 1)
-outline_color = Color(0.25098, 0.188235, 0.188235, 1)
 
-[node name="Slot" type="TextureButton" node_paths=PackedStringArray("_sprite", "_label")]
+[node name="Slot" type="Control" node_paths=PackedStringArray("_sprite", "_label")]
+layout_mode = 3
+anchors_preset = 0
+size_flags_vertical = 8
+script = ExtResource("3_n3jes")
+_sprite = NodePath("TextureButton/Box/Container/Control/Sprite2D")
+_label = NodePath("TextureButton/Box/Label")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
 offset_right = 24.0
 offset_bottom = 24.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
 focus_mode = 1
-shortcut = SubResource("Shortcut_c4fra")
+action_mode = 0
 texture_normal = ExtResource("1_5f2j7")
 texture_pressed = ExtResource("2_sjnr7")
 texture_focused = ExtResource("2_sjnr7")
 stretch_mode = 0
-script = ExtResource("3_n3jes")
-_sprite = NodePath("Container/Sprite2D")
-_label = NodePath("Container/Label")
-_can_drag = true
+metadata/_edit_use_anchors_ = true
 
-[node name="Container" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 12.0
-offset_top = 12.0
-offset_right = 12.0
-offset_bottom = 12.0
-
-[node name="Sprite2D" type="Sprite2D" parent="Container"]
-z_index = 99
-scale = Vector2(1.5, 1.5)
-
-[node name="Label" type="Label" parent="Container"]
-z_index = 99
+[node name="Box" type="Control" parent="TextureButton"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -9.0
-offset_top = -12.0
-offset_right = 12.0
-offset_bottom = 11.0
-grow_horizontal = 2
-grow_vertical = 2
-label_settings = SubResource("LabelSettings_a6gqn")
+anchors_preset = 0
+offset_right = 24.0
+offset_bottom = 24.0
+mouse_filter = 2
+
+[node name="Container" type="CenterContainer" parent="TextureButton/Box"]
+layout_mode = 2
+offset_right = 24.0
+offset_bottom = 24.0
+
+[node name="Control" type="Control" parent="TextureButton/Box/Container"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="TextureButton/Box/Container/Control"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_sjnr7")
+hframes = 3
+
+[node name="Label" type="Label" parent="TextureButton/Box"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -21.0
+offset_top = -7.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_n3jes")
 vertical_alignment = 2
-
-[node name="DragCoolDownTimer" type="Timer" parent="."]
-wait_time = 0.25
-one_shot = true
-
-[connection signal="button_down" from="." to="." method="_on_button_down"]
-[connection signal="button_up" from="." to="." method="_on_button_up"]
-[connection signal="pressed" from="." to="." method="_on_pressed"]
-[connection signal="timeout" from="DragCoolDownTimer" to="." method="_on_drag_cool_down_timer_timeout"]

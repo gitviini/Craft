@@ -2,7 +2,6 @@ extends CharacterBody2D
 class_name Person
 
 @export_category("Variables")
-@export var _inventory := preload("res://scenes/inventory.tres")
 @export var SPEED:int = 50
 @export var _direction:Vector2 = Vector2.ZERO
 @export var _flip_h:bool = false

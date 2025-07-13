@@ -1,28 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://c78tsiet61bh8"]
+[gd_scene load_steps=2 format=3 uid="uid://d2ofelegykfr1"]
 
-[ext_resource type="Script" uid="uid://1j2i0fitjo1m" path="res://tool_bar.gd" id="1_s5xok"]
+[ext_resource type="Script" uid="uid://bh0kofshrh55f" path="res://assets/scripts/tool_bar.gd" id="1_m2m64"]
 
-[node name="ToolBar" type="CanvasLayer"]
-script = ExtResource("1_s5xok")
+[node name="ToolBar" type="CanvasLayer" node_paths=PackedStringArray("_container")]
+script = ExtResource("1_m2m64")
+_container = NodePath("Grid")
 
-[node name="ContainerToolBar" type="Control" parent="."]
-layout_mode = 3
+[node name="Grid" type="GridContainer" parent="."]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -36.0
 offset_top = -34.0
-offset_right = 36.0
 grow_horizontal = 2
 grow_vertical = 0
-size_flags_vertical = 0
-
-[node name="Control" type="GridContainer" parent="ContainerToolBar"]
-layout_mode = 1
-offset_right = 72.0
-offset_bottom = 24.0
-theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 1
-columns = 3
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 24

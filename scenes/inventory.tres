@@ -1,11 +1,7 @@
-[gd_resource type="Resource" script_class="inventory" load_steps=2 format=3 uid="uid://b47q11r0ntm2u"]
+[gd_resource type="Resource" script_class="inventory" load_steps=2 format=3 uid="uid://b0r68ueauvtbi"]
 
-[ext_resource type="Script" uid="uid://bwv22sapljjvl" path="res://inventory.gd" id="1_8pjxv"]
+[ext_resource type="Script" uid="uid://drb7dnm71in2y" path="res://assets/scripts/inventory.gd" id="1_8pjxv"]
 
 [resource]
 script = ExtResource("1_8pjxv")
 _items = []
-_max_inventory_length = 5
-_hot_bar = []
-_max_hot_bar_length = 3
-metadata/_custom_type_script = "uid://bwv22sapljjvl"
