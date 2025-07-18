@@ -4,7 +4,8 @@ class_name ObjectsTileMapLayer
 @export_category("Variables")
 @export var _tile_scenes:Dictionary = {
 	0: preload("res://scenes/tree.tscn"),
-	1: preload("res://scenes/mushroom.tscn")
+	1: preload("res://scenes/mushroom.tscn"),
+	2: preload("res://scenes/chest.tscn")
 }
 var _half_tile_size: int
 

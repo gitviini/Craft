@@ -19,7 +19,7 @@ config/icon="uid://d4c5fxf5mi6ul"
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
-window/stretch/scale=3.0
+window/stretch/scale=4.0
 
 [editor]
 
@@ -79,7 +79,8 @@ pointing/stretch/mode="canvas_items"
 [layer_names]
 
 2d_physics/layer_1="terreno"
-2d_physics/layer_2="action"
+2d_physics/layer_2="attack"
+2d_physics/layer_3="action"
 
 [rendering]
 

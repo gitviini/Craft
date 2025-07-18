@@ -1,0 +1,104 @@
+[gd_scene load_steps=9 format=3 uid="uid://ce0hch3ppe16x"]
+
+[ext_resource type="PackedScene" uid="uid://dj0bthy66403f" path="res://scenes/object.tscn" id="1_sy5e1"]
+[ext_resource type="Texture2D" uid="uid://dr7uv43ksdqt2" path="res://assets/images/sprites/interactable/chest/chest_sprite_sheet.png" id="2_gqd3d"]
+[ext_resource type="PackedScene" uid="uid://dqabxcp4k5xy4" path="res://scenes/chest_item.tscn" id="2_yue2o"]
+
+[sub_resource type="Animation" id="Animation_w02o5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_yhylo"]
+resource_name = "hit"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_yue2o"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ilhio"]
+resource_name = "open"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kg5gm"]
+_data = {
+&"RESET": SubResource("Animation_w02o5"),
+&"hit": SubResource("Animation_yhylo"),
+&"idle": SubResource("Animation_yue2o"),
+&"open": SubResource("Animation_ilhio")
+}
+
+[node name="Chest" node_paths=PackedStringArray("_animation") instance=ExtResource("1_sy5e1")]
+constant_linear_velocity = Vector2(0, -2.291)
+_animation = NodePath("AnimationPlayer")
+_droppable = Array[PackedScene]([ExtResource("2_yue2o")])
+_action_shortcut = &"menu"
+_action_animation = &"open"
+_max_drop = 1
+_min_drop = 1
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, 3)
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_gqd3d")
+hframes = 3
+vframes = 2
+frame = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+libraries = {
+&"": SubResource("AnimationLibrary_kg5gm")
+}
+autoplay = "idle"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_animation_finished"]

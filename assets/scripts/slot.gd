@@ -53,3 +53,11 @@ func _on_slot_selected_timer_timeout() -> void:
 	if _selected and not _is_empty:
 		_inventory._slot_selected = _index
 		set_process(true)
+
+
+func _on_texture_button_mouse_entered() -> void:
+	pass # Replace with function body.
+
+
+func _on_texture_button_mouse_exited() -> void:
+	pass # Replace with function body.

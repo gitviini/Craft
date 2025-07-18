@@ -86,6 +86,7 @@ _data = {
 [node name="Tree" node_paths=PackedStringArray("_animation") instance=ExtResource("1_viusy")]
 _animation = NodePath("AnimationPlayer")
 _droppable = Array[PackedScene]([ExtResource("2_qd6xs"), ExtResource("3_ake3r")])
+_action_animation = null
 _idle_animation = {
 1: &"idle_trunk",
 10: &"idle"

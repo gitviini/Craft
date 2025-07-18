@@ -34,5 +34,4 @@ func _update(_slot_index) -> void:
 	_items[_slot_index] = _new_content
 	_items[_slot_selected] = _old_content
 	
-	print(_items)
 	inventory_update.emit(_items)

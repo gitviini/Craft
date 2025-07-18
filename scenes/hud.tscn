@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cqqwcr161yyvt"]
+[gd_scene load_steps=34 format=3 uid="uid://cqqwcr161yyvt"]
 
 [ext_resource type="Texture2D" uid="uid://mspyjf6muvlt" path="res://assets/images/sprites/buttons/up.png" id="1_6fi6k"]
 [ext_resource type="Script" uid="uid://bsb7susv1uwsd" path="res://assets/scripts/hud.gd" id="1_mphia"]
@@ -6,12 +6,15 @@
 [ext_resource type="Texture2D" uid="uid://slv48nusqtc4" path="res://assets/images/sprites/buttons/right.png" id="3_047uy"]
 [ext_resource type="Texture2D" uid="uid://bp1m65bunvf1o" path="res://assets/images/sprites/buttons/up_pressed.png" id="3_hd3ao"]
 [ext_resource type="Texture2D" uid="uid://qrgmuv2qpc32" path="res://assets/images/sprites/buttons/down.png" id="4_5pdws"]
+[ext_resource type="Texture2D" uid="uid://dlogeb1uu83qh" path="res://assets/images/sprites/buttons/left_pressed.png" id="5_iypfu"]
 [ext_resource type="Texture2D" uid="uid://8rquib7n10u7" path="res://assets/images/sprites/buttons/right_pressed.png" id="6_0i1j5"]
 [ext_resource type="Texture2D" uid="uid://ufskqkumgeyr" path="res://assets/images/sprites/buttons/down_pressed.png" id="8_mphia"]
 [ext_resource type="Texture2D" uid="uid://r0hlu1egfigf" path="res://assets/images/sprites/buttons/action.png" id="9_mphia"]
 [ext_resource type="Texture2D" uid="uid://0ysmr2mbmv0b" path="res://assets/images/sprites/buttons/action_pressed.png" id="10_0m4u7"]
 [ext_resource type="Texture2D" uid="uid://cs4323q2wt72r" path="res://assets/images/sprites/buttons/reload.png" id="11_apjy4"]
+[ext_resource type="Texture2D" uid="uid://df2irwdd8auj5" path="res://assets/images/sprites/buttons/attack.png" id="12_3xg78"]
 [ext_resource type="Texture2D" uid="uid://d2w1wrocl2m7m" path="res://assets/images/sprites/buttons/reload_pressed.png" id="12_5n1hp"]
+[ext_resource type="Texture2D" uid="uid://bg4ymfbyon1td" path="res://assets/images/sprites/buttons/attack_pressed.png" id="13_48y67"]
 [ext_resource type="Texture2D" uid="uid://cisd0g65xh0l8" path="res://assets/images/sprites/buttons/menu.png" id="13_eld54"]
 [ext_resource type="Texture2D" uid="uid://bjyw1qrrt83si" path="res://assets/images/sprites/buttons/menu_pressed.png" id="14_3swnk"]
 [ext_resource type="Texture2D" uid="uid://c8qipfmojffuq" path="res://assets/images/sprites/buttons/close.png" id="15_qkknv"]
@@ -29,6 +32,10 @@ size = Vector2(16, 48)
 size = Vector2(48, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5n1hp"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_084dp"]
+size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eld54"]
 size = Vector2(16, 16)
@@ -97,7 +104,7 @@ visibility_mode = 1
 position = Vector2(0, 24)
 scale = Vector2(1.5, 1.5)
 texture_normal = ExtResource("2_uo2fv")
-texture_pressed = ExtResource("2_uo2fv")
+texture_pressed = ExtResource("5_iypfu")
 shape = SubResource("RectangleShape2D_047uy")
 passby_press = true
 action = "ui_left"
@@ -142,7 +149,7 @@ anchors_preset = 0
 offset_right = 72.0
 offset_bottom = 72.0
 
-[node name="ContainerTouch" type="Control" parent="Controls/ContainerActions/Actions"]
+[node name="Select" type="Control" parent="Controls/ContainerActions/Actions"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -155,11 +162,34 @@ offset_bottom = 12.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="action" type="TouchScreenButton" parent="Controls/ContainerActions/Actions/ContainerTouch"]
+[node name="select" type="TouchScreenButton" parent="Controls/ContainerActions/Actions/Select"]
 scale = Vector2(1.5, 1.5)
 texture_normal = ExtResource("9_mphia")
 texture_pressed = ExtResource("10_0m4u7")
 shape = SubResource("RectangleShape2D_5n1hp")
+passby_press = true
+action = "ui_focus_next"
+visibility_mode = 1
+
+[node name="Attack" type="Control" parent="Controls/ContainerActions/Actions"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="attack" type="TouchScreenButton" parent="Controls/ContainerActions/Actions/Attack"]
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("12_3xg78")
+texture_pressed = ExtResource("13_48y67")
+shape = SubResource("RectangleShape2D_084dp")
 passby_press = true
 action = "ui_accept"
 visibility_mode = 1
@@ -224,6 +254,38 @@ stretch_mode = 0
 
 [node name="Menu" type="CanvasLayer" parent="."]
 visible = false
+
+[node name="ContainerBackground" type="Control" parent="Menu"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BackGround" type="ColorRect" parent="Menu/ContainerBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.568627, 0.239216, 0.196078, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Menu/ContainerBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.952941, 0.54902, 0.32549, 1)
 
 [node name="ContainerSettings" type="Control" parent="Menu"]
 layout_mode = 3

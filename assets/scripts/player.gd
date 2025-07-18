@@ -9,6 +9,7 @@ class_name Person
 var _animation:StringName
 var _screen_size:Vector2
 var _run_action:bool = false
+var _interect_mode:StringName = ""
 
 
 func _ready() -> void:
@@ -27,9 +28,13 @@ func set_animation() -> void:
 
 func _process(_delta: float) -> void:
 	set_animation()
+	if Input.is_action_just_pressed("ui_focus_next"):
+		_interect_mode = "select"
+	elif Input.is_action_pressed("ui_accept"):
+		_interect_mode = "attack"
 
 func _physics_process(_delta: float) -> void:
-	if Input.is_action_pressed("ui_accept") and not _run_action:
+	if _interect_mode and not _run_action:
 		set_physics_process(false)
 		set_process(false)
 		_animation = _animation.replace("idle" if _animation.count("idle") else "walk", "action") 
@@ -58,7 +63,10 @@ func start_position(_position) -> void:
 
 func _on_action_area_body_entered(_body: Node2D) -> void:
 	if _body is PhysicObject:
-		_body.hit(_damage)
+		if _interect_mode == "attack":
+			_body.hit(_damage)
+		if _interect_mode == "select":
+			_body.action()
 
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
@@ -71,3 +79,4 @@ func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 
 func _on_cool_down_timeout() -> void:
 	_run_action = false
+	_interect_mode = ""

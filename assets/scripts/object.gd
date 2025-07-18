@@ -4,6 +4,8 @@ class_name PhysicObject
 @export_category("Variables")
 @export var _animation: AnimationPlayer
 @export var _droppable: Array[PackedScene]
+@export var _action_shortcut: StringName
+@export var _action_animation: StringName
 @export var _idle_animation: Dictionary = {
 	1: "idle"
 }
@@ -37,6 +39,10 @@ func hit(_damage:int) -> void:
 		_health -= _damage
 		set_process(false)
 
+func action() -> void:
+	Input.action_press(_action_shortcut)
+	_animation.play(_action_animation)
+
 func _process(_delta: float) -> void:
 	if _health <= 0:
 		for _drop_item in _droppable:
@@ -48,6 +54,6 @@ func _process(_delta: float) -> void:
 		return
 
 func _animation_finished(_anim_name:StringName) -> void:
-	if _anim_name.contains("hit"):
+	if _anim_name.contains("hit") or _anim_name.contains(_action_animation):
 		set_process(true)
 		_animation.play(_get_animation(_idle_animation))
